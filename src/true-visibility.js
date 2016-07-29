@@ -1,9 +1,15 @@
+// Configure JSHint
+//  Predefined globals, false = read only
+/* globals getComputedStyle:false */
+
+
 
 /**
  * ## isVisible
  *
  * @author Jason Farrell (http://useallfive.com/)
  * @author Mouse Braun (mouse@knoblau.ch)
+ * @author bigteejay (twjohnso@hotmail.com)
  *
  * Checks if a DOM element is truly visible.
  */
@@ -27,7 +33,7 @@
     var isVisible = function( _el )
     {
         'use strict';
-
+        
         var VISIBLE_PADDING = 2;
 
         /*
@@ -49,7 +55,9 @@
          */
         var _inDocument = function( element )
         {
+            /*jshint -W084 */
             while ( element = element.parentNode )
+            /*jshint +W084 */
             {
                 if ( element === document )
                 {
@@ -66,16 +74,10 @@
          * consideration its parents and overflow.
          *
          * @param {DOMElement} el the DOM element to check if is visible
-         * @param {Number} t Top corner position number
-         * @param {Number} r Right corner position number
-         * @param {Number} b Bottom corner position number
-         * @param {Number} l Left corner position number
-         * @param {Number} w Element width number
-         * @param {Number} h Element height number
          *
          * @return _Boolean_ [description]
          */
-        var _isVisible = function( el, t, r, b, l, w, h )
+        var _isVisible = function( el )
         {
             var style = getComputedStyle( el );
 
@@ -96,6 +98,9 @@
 
                 var pStyle      = getComputedStyle( p );
                 var pOverflow   = pStyle.overflow;
+                
+                var cRect       = el.getBoundingClientRect();
+                var pRect       = p.getBoundingClientRect();
 
                 /**
                  * check if the target element is to the right, left, under, or
@@ -103,22 +108,20 @@
                  */
                 if ( pOverflow === 'hidden' || pOverflow === 'scroll' )
                 {
-                    if ( l + VISIBLE_PADDING > p.offsetWidth + p.scrollLeft ||
-                        l + w - VISIBLE_PADDING < p.scrollLeft ||
-                        t + VISIBLE_PADDING > p.offsetHeight + p.scrollTop ||
-                        t + h - VISIBLE_PADDING < p.scrollTop )
-                    {
+                    var inScrollableBounds = (
+                        cRect.top + VISIBLE_PADDING >= pRect.top &&
+                        cRect.right - VISIBLE_PADDING <= pRect.right + p.scrollLeft &&
+                        cRect.bottom - VISIBLE_PADDING <= pRect.bottom + p.scrollTop &&
+                        cRect.left + VISIBLE_PADDING >= pRect.left
+                    );
+                    
+                    //-- Our target element is out of bounds
+                    if ( !inScrollableBounds ) {
                         return false;
                     }
                 }
 
-                if ( p === el.offsetParent )
-                {
-                    l += p.offsetLeft;
-                    t += p.offsetTop;
-                }
-
-                return _isVisible( p, t, r, b, l, w, h );
+                return _isVisible( p );
             }
 
             return true;
@@ -133,14 +136,7 @@
             return false;
         }
 
-        var t = _el.offsetTop;
-        var l = _el.offsetLeft;
-        var b = t + _el.offsetHeight;
-        var r = l + _el.offsetWidth;
-        var w = _el.offsetWidth;
-        var h = _el.offsetHeight;
-
-        return _isVisible( _el, t, r, b, l, w, h );
+        return _isVisible( _el );
     };
 
     return isVisible;

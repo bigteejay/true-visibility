@@ -1,16 +1,30 @@
-true-visibility 0.1.1
+true-visibility 0.2.0
 =====================
 
-Checks if a DOM element is truly visible
+Checks if a DOM element is able to be visible.  This means that it
+could be viewable (but it's parent is scrolled such that you can't
+currently see it.)  Essentially, with scrolling accounted for, could
+the element be entirely viewed within its parent.
 
 
 Installation
 ------------
 
 ```
-    npm i true-visibility -D
+    bower install git+https://github.com/bigteejay/true-visibility --save
 ```
 
+Development
+------------
+
+```
+    git clone https://github.com/bigteejay/true-visibility
+    cd true-visibility
+    git config user.name {username}
+    git config user.email {email}
+    npm install
+    gulp [default]
+```
 
 Usage
 -----
@@ -41,20 +55,18 @@ or
 ```
 
 
-This project adheres to the [Contributor Covenant](http://contributor-covenant.org/). By participating, you are expected to honor this code.
 
-[true-visibility - Code of Conduct](https://github.com/mousemke/true-visibility/blob/master/CODE_OF_CONDUCT.md)
-
-Need to report something? [mkem@knoblau.ch](mailto:mkem@knoblau.ch)
+Need to report something? [twjohnso@hotmail.com](twjohnso@hotmail.com)
 
 
 Changes
 -------
 
-+ 0.1.1
-    + updated package dependencies
-
-+ 0.1.0
-    + UMD fixed
-    + CoC added
-    + Readme is slightly more useful
++ 0.2.0
+    + Forked from [https://github.com/mousemke/true-visibility](https://github.com/mousemke/true-visibility)
+    + Significant rewrite to visibility detection method 
+    + Added bower (considering registering this package)
+    + Build system revised to require running jshint first (successfully)
+    + Now generates/includes sourcemap
+    + Updated dist
+    + Updated readme

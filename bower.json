@@ -1,0 +1,28 @@
+{
+  "name": "true-visibility",
+  "description": "check if an element is viewable, accounts for scrolling (ie9+)",
+  "main": "./dist/true-visibility.min.js",
+  "authors": [
+    "bigteejay <twjohnso@hotmail.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "dom",
+    "visible",
+    "display",
+    "visibility",
+    "hidden"
+  ],
+  "homepage": "https://github.com/bigteejay/true-visibility",
+  "moduleType": [
+    "amd",
+    "node"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
