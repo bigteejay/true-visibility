@@ -85,7 +85,7 @@ gulp.task( 'build:js', ['clean:dist', 'jshint'], function()
             suffix: '.min'
         }) )
         .pipe( header( license ) )
-        .pipe( sourcemaps.write() )
+        .pipe( sourcemaps.write( "." ) )
         .pipe( gulp.dest( paths.dist ) );
 });
 

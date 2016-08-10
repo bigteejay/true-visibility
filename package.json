@@ -1,6 +1,6 @@
 {
   "name": "true-visibility",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "check if an element is viewable, accounts for scrolling (ie9+)",
   "main": "./dist/true-visibility.min.js",
   "scripts": {

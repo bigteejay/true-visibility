@@ -62,6 +62,9 @@ Need to report something? [twjohnso@hotmail.com](twjohnso@hotmail.com)
 Changes
 -------
 
++ 0.2.1
+    + External sourcemaps
+
 + 0.2.0
     + Forked from [https://github.com/mousemke/true-visibility](https://github.com/mousemke/true-visibility)
     + Significant rewrite to visibility detection method 
