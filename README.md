@@ -1,5 +1,5 @@
-true-visibility 0.2.0
-=====================
+true-visibility
+===============
 
 Checks if a DOM element is able to be visible.  This means that it
 could be viewable (but it's parent is scrolled such that you can't
